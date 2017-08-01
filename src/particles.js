@@ -16,12 +16,14 @@ export default Particle
 */
 
 import Particle from './particles/Particle'
+import Sprite from './particles/Sprite'
 import Emitter from './particles/Emitter'
 import EmitterSphere from './particles/EmitterSphere'
 import Scene from './particles/Scene'
 import Renderer from './particles/Renderer'
 export {
   Particle,
+  Sprite,
   Emitter,
   EmitterSphere,
   Scene,

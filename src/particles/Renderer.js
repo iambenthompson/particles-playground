@@ -53,19 +53,15 @@ class Renderer {
   drawParticle(particle){
     if (particle.z < this.Z_CLIP) return;
     let perspective = this.focalLength / (this.focalLength + particle.z);
-    let size = particle.size * perspective;
-    let ageRatio = particle.age / particle.lifespan;
     this.context.save();
     this.context.scale(perspective, perspective);
     this.context.translate(particle.x, particle.y);
-    this.context.beginPath();
-    this.context.arc(particle.x, particle.y, size, 0, 2 * Math.PI);
-    this.context.closePath();
-    //this.context.fillStyle = 'rgba(' + particle.red + ', ' + particle.green + ', ' + particle.blue + ', ' + particle.opacity * (particle.lifespan - particle.age) / particle.lifespan + ')';
-    //this.context.fill();
-    this.context.strokeStyle = 'rgba(' + particle.red + ', ' + particle.green + ', ' + particle.blue + ', ' + particle.opacity * ageRatio + ')';
-    this.context.lineWidth = this.STROKE_WIDTH_MAX * perspective;
-    this.context.stroke();
+
+    particle.draw({
+      context: this.context,
+      perspective
+    });
+
     this.context.restore();
   }
 }
