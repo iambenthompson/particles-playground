@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>particles</title>
+    <style>
+        html, body {
+          width:  100%;
+          height: 100%;
+          margin: 0px;
+        }
+        body{ background-color: white; }
+    </style>
+</head>
+<body>
+  <canvas id="canvas" width=400 height=400></canvas>
+  <script>
+    var canvas = document.getElementById('canvas');
+    var scene = new particles.Scene();
+    var emitter = new particles.EmitterSphere({num: 2, radius: 100});
+    scene.add(emitter);
+    var renderer = new particles.Renderer({canvas, scene});
+
+    var origX = emitter.x;
+    var origY = emitter.y;
+    canvas.addEventListener("mousedown", _mousedownHandler, false);
+
+    function _mousedownHandler(event){
+      _mousemoveHandler(event);
+      canvas.addEventListener("mousemove", _mousemoveHandler, false);
+      document.addEventListener("mouseup", _mouseupHandler, false);
+    }
+    function _mousemoveHandler(event){
+      var perspective = renderer.focalLength / (renderer.focalLength + emitter.z);
+      var convertedX = (event.clientX - renderer.canvasWidth * 0.5) * perspective;
+      var convertedY = (event.clientY - renderer.canvasHeight * 0.5) * perspective;
+
+      emitter.x = convertedX * 0.5;
+      emitter.y = convertedY * 0.5;
+      //console.log(perspective)
+      // console.log(emitter.x, emitter.y);
+      // console.log(event.clientX, event.clientY);
+      // console.log(this.canvasWidth, this.canvasHeight);
+      // console.log(convertedX, convertedY);
+    }
+    function _mouseupHandler(event){
+      canvas.removeEventListener("mousemove", _mousemoveHandler);
+      document.removeEventListener("mouseup", _mouseupHandler);
+      emitter.x = origX;
+      emitter.y = origY;
+    }
+  </script>
+</body>
+</html>

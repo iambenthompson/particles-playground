@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const libraryName = 'particles';
 
 module.exports = {
@@ -14,6 +15,10 @@ module.exports = {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
+  plugins: [new HtmlWebpackPlugin({
+    template: 'index.ejs',
+    inject: 'head'
+  })],
   devtool: 'source-map',
   devServer: {
     host: '0.0.0.0',
