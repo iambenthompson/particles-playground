@@ -2,7 +2,10 @@ import Point3D from './Point3D';
 import Particle from './Particle';
 
 class Renderer {
-  constructor(canvas, scene) {
+  constructor({
+                canvas,
+                scene
+              } = {}) {
     this.STROKE_WIDTH_MAX = 0.75;
     this.Z_CLIP = -279;
 

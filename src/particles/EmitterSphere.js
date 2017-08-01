@@ -2,8 +2,14 @@ import Emitter from './Emitter';
 import Particle from './Particle';
 
 class EmitterSphere extends Emitter {
-  constructor(x = 0, y = 0, z = 0, num = 1, radius = 10) {
-    super(x, y, z, num);
+  constructor({
+                x = 0,
+                y = 0,
+                z = 0,
+                num = 1,
+                radius = 10
+              } = {}) {
+    super({x, y, z, num});
     this.radius = radius;
   }
 
@@ -33,7 +39,11 @@ class EmitterSphere extends Emitter {
     let y = r * Math.sin( theta) * Math.sin( phi )
     let z = r * Math.cos( theta )  
 
-    return new Particle(this.x + x, this.y + y, this.z + z);
+    return new Particle({
+                          x: this.x + x,
+                          y: this.y + y,
+                          z: this.z + z
+                        });
   }
 
 

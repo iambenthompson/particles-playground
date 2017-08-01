@@ -1,8 +1,12 @@
 import Point3D from './Point3D';
 
 class Particle extends Point3D {
-  constructor(x = 0, y = 0, z = 0) {
-    super(x, y, z);
+  constructor({
+                x = 0,
+                y = 0,
+                z = 0
+              } = {}) {
+    super({x, y, z});
     this.speedX = -0.3 + Math.random() * 0.6;
     this.speedY = -0.3 + Math.random() * 0.6;
     this.speedZ = -10.1 + Math.random() * 10.2;
