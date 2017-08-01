@@ -2,18 +2,22 @@ import Emitter from './Emitter';
 import Particle from './Particle';
 
 class Scene {
-  constructor() {
-    this.emitters = [];
-    this.particles = [];
+  constructor({
+                emitters = [], particles = []
+              } = {}) {
+    this.emitters = emitters;
+    this.particles = particles;
   }
 
-  add(item){
-    if (item instanceof Emitter){
-      this.emitters.push(item);
-    } else if (item instanceof Particle){
-      this.particles.push(item);
-    } else {
-      throw new Error("Can only add Emitters and Particles to a Scene.");
+  add(items){
+    for (let item of items){
+      if (item instanceof Emitter){
+        this.emitters.push(item);
+      } else if (item instanceof Particle){
+        this.particles.push(item);
+      } else {
+        throw new Error("Can only add Emitters and Particles to a Scene.");
+      }
     }
   }
 

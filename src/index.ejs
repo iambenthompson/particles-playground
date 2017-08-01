@@ -16,10 +16,14 @@
   <canvas id="canvas" width=400 height=400></canvas>
   <script>
     var canvas = document.getElementById('canvas');
-    var scene = new particles.Scene();
     var emitter = new particles.EmitterSphere({num: 2, radius: 100});
-    scene.add(emitter);
-    var renderer = new particles.Renderer({canvas, scene});
+
+    var rendererConfig = {
+      canvas: canvas,
+      emitters: [emitter]
+    }
+
+    var renderer = new particles.Renderer(rendererConfig);
 
     var origX = emitter.x;
     var origY = emitter.y;

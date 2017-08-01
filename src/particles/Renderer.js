@@ -1,17 +1,18 @@
 import Point3D from './Point3D';
 import Particle from './Particle';
+import Scene from './Scene';
 
 class Renderer {
   constructor({
                 canvas,
-                scene
+                emitters
               } = {}) {
     this.STROKE_WIDTH_MAX = 0.75;
     this.Z_CLIP = -279;
 
     this.canvas = canvas;
     this.context = this.canvas.getContext("2d");
-    this.scene = scene;
+    this.scene = new Scene({emitters});
     this.document = canvas.ownerDocument;
     this.window = this.document.defaultView || this.document.parentWindow;
     this.focalLength = 300;
