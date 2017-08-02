@@ -7,6 +7,14 @@ class Scene {
               } = {}) {
     this.emitters = emitters;
     this.particles = particles;
+
+    // ref measurements on my 15 inch mbp
+    // viewport height: 0.14224 meters
+    // y range at z clip: 28
+    // gravity in real life is 9.8 m/s^2
+    // 0.14224 / 28 = 9.8 / ?
+    // then divide by approximate framerate to get gravity per sec
+    this.gravity = 9.8 * 28 / 0.14224 / 960;
   }
 
   add(items){
@@ -26,6 +34,7 @@ class Scene {
 
     for (let particle of this.particles){
       particle.update();
+      particle.speedY += this.gravity;
     }
     for (let emitter of this.emitters){
       this.particles.push(...emitter.emit());
