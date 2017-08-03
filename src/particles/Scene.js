@@ -3,10 +3,13 @@ import Particle from './Particle';
 
 class Scene {
   constructor({
-                emitters = [], particles = []
+                emitters = [],
+                particles = [],
+                useGravity = false
               } = {}) {
     this.emitters = emitters;
     this.particles = particles;
+    this.useGravity = useGravity;
 
     // ref measurements on my 15 inch mbp
     // viewport height: 0.14224 meters
@@ -34,7 +37,7 @@ class Scene {
 
     for (let particle of this.particles){
       particle.update();
-      particle.speedY += this.gravity;
+      if (this.useGravity) particle.speedY += this.gravity;
     }
     for (let emitter of this.emitters){
       this.particles.push(...emitter.emit());
