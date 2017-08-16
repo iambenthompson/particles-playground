@@ -6,9 +6,9 @@ class Particle extends Point3D {
                 x = 0,
                 y = 0,
                 z = 0,
-                speedX = -0.3 + Math.random() * 0.6,
-                speedY = -0.3 + Math.random() * 0.6,
-                speedZ = -10.1 + Math.random() * 10.2,
+                speedX = -2.1 + Math.random() * 4.2,
+                speedY = -2.1 + Math.random() * 4.2,
+                speedZ = -2.1 - Math.random() * 6.2,
                 accelerationX = 0,
                 accelerationY = 0,
                 accelerationZ = 0
@@ -22,7 +22,7 @@ class Particle extends Point3D {
     this.speedZ = speedZ;
     this.sprite = new Sprite();
     this.age = 0;
-    this.lifespan = 70;//80 + Math.random() * 40;
+    this.lifespan = 50;//80 + Math.random() * 40;
     this.dead = false;
   }
 
