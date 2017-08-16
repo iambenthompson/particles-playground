@@ -14,7 +14,8 @@
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
-    "babel-runtime": "^6.23.0"
+    "babel-runtime": "^6.23.0",
+    "hammerjs": "^2.0.8"
   },
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server",
