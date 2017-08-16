@@ -23,15 +23,14 @@ class Sprite {
       } = {}){
     let drawnSize = this.size * perspective;
     let ageRatio = particle.age / particle.lifespan;
-    context.beginPath();
-    context.arc(particle.x, particle.y, drawnSize, 0, 2 * Math.PI);
-    context.closePath();
-    context.fillStyle = 'rgba(' + this.color.red + ', ' + this.color.green + ', ' + this.color.blue + ', ' + this.color.alpha * (1-ageRatio) + ')';
-    context.fill();
 
-//    this.context.strokeStyle = 'rgba(' + particle.red + ', ' + particle.green + ', ' + particle.blue + ', ' + particle.opacity * ageRatio + ')';
-//    this.context.lineWidth = this.STROKE_WIDTH_MAX * perspective;
-//    this.context.stroke();
+    var radgrad = context.createRadialGradient(particle.x,particle.y,0,particle.x,particle.y, drawnSize);
+    radgrad.addColorStop(0, 'rgba(' + this.color.red + ', ' + this.color.green + ', ' + this.color.blue + ', ' + this.color.alpha * (1-ageRatio) + ')');
+    radgrad.addColorStop(0.99, 'rgba(' + this.color.red + ', ' + this.color.green + ', ' + this.color.blue + ', ' + this.color.alpha * (1-ageRatio) + ')');
+    radgrad.addColorStop(1, 'rgba(' + this.color.red + ', ' + this.color.green + ', ' + this.color.blue + ', ' + 0 + ')');
+
+    context.fillStyle = radgrad;
+    context.fillRect(particle.x-drawnSize,particle.y-drawnSize,drawnSize * 2,drawnSize * 2);
   }
 
 }
