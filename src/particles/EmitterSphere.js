@@ -37,7 +37,7 @@ class EmitterSphere extends Emitter {
 
     let x = r * Math.sin( theta) * Math.cos( phi )
     let y = r * Math.sin( theta) * Math.sin( phi )
-    let z = r * Math.cos( theta )  
+    let z = r * Math.cos( theta )
 
     return new Particle({
                           x: this.x + x,

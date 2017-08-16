@@ -33,9 +33,11 @@ class Particle extends Point3D {
       return;
     }
 
-    this.x += this.speedX;
-    this.y += this.speedY;
-    this.z += this.speedZ;
+    this.setPosition({
+      x: this.x + this.speedX,
+      y: this.y + this.speedY,
+      z: this.z + this.speedZ
+    });
 
     this.speedX += this.accelerationX;
     this.speedY += this.accelerationY;

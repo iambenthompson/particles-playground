@@ -16,7 +16,7 @@
   <canvas id="canvas" width=400 height=400></canvas>
   <script>
     var canvas = document.getElementById('canvas');
-    var emitter = new particles.EmitterSphere({num: 2, radius: 100});
+    var emitter = new particles.EmitterSphere({num: 20, radius: 0.001});
 
     var rendererConfig = {
       canvas: canvas,
@@ -30,17 +30,20 @@
     canvas.addEventListener("mousedown", _mousedownHandler, false);
 
     function _mousedownHandler(event){
-      _mousemoveHandler(event);
+      _mousemoveHandler(event, false);
       canvas.addEventListener("mousemove", _mousemoveHandler, false);
       document.addEventListener("mouseup", _mouseupHandler, false);
     }
-    function _mousemoveHandler(event){
+    function _mousemoveHandler(event, interpolate = true){
       var perspective = renderer.focalLength / (renderer.focalLength + emitter.z);
       var convertedX = (event.clientX - renderer.canvasWidth * 0.5) * perspective;
       var convertedY = (event.clientY - renderer.canvasHeight * 0.5) * perspective;
 
-      emitter.x = convertedX * 0.5;
-      emitter.y = convertedY * 0.5;
+      emitter.setPosition({
+        x: convertedX * 0.5,
+        y: convertedY * 0.5,
+        interpolate: interpolate
+      });
       //console.log(perspective)
       // console.log(emitter.x, emitter.y);
       // console.log(event.clientX, event.clientY);
@@ -50,8 +53,8 @@
     function _mouseupHandler(event){
       canvas.removeEventListener("mousemove", _mousemoveHandler);
       document.removeEventListener("mouseup", _mouseupHandler);
-      emitter.x = origX;
-      emitter.y = origY;
+      // emitter.x = origX;
+      // emitter.y = origY;
     }
   </script>
 </body>
