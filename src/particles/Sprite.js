@@ -9,7 +9,7 @@ class Sprite {
                   alpha: 1
                 },
                 opacity = 1,
-                size = 12
+                size = 8
               } = {}) {
     this.color = color;
     this.opacity = opacity;
@@ -21,12 +21,12 @@ class Sprite {
         perspective,
         particle
       } = {}){
-    let drawnSize = this.size * perspective;
     let ageRatio = particle.age / particle.lifespan;
+    let drawnSize = (this.size * (1 + (0.2 * ageRatio))) * perspective;
 
     var radgrad = context.createRadialGradient(particle.x,particle.y,0,particle.x,particle.y, drawnSize);
-    radgrad.addColorStop(0, 'rgba(' + this.color.red + ', ' + this.color.green + ', ' + this.color.blue + ', ' + this.color.alpha * (1-ageRatio) + ')');
-    radgrad.addColorStop(0.01, 'rgba(' + this.color.red + ', ' + this.color.green + ', ' + this.color.blue + ', ' + this.color.alpha * (1-ageRatio) + ')');
+    radgrad.addColorStop(0, 'rgba(' + this.color.red + ', ' + this.color.green + ', ' + this.color.blue + ', ' + this.color.alpha/* * (1-ageRatio)*/ + ')');
+    radgrad.addColorStop(0.8, 'rgba(' + this.color.red + ', ' + this.color.green + ', ' + this.color.blue + ', ' + this.color.alpha * (1-ageRatio) + ')');
     radgrad.addColorStop(1, 'rgba(' + this.color.red + ', ' + this.color.green + ', ' + this.color.blue + ', ' + 0 + ')');
 
     context.fillStyle = radgrad;

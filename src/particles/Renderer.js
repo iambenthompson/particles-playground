@@ -32,12 +32,14 @@ class Renderer {
     this.canvasWidth = this.canvas.width = this.window.innerWidth;
     this.canvasHeight = this.canvas.height = this.window.innerHeight;
     this.context.translate(this.canvasWidth * 0.5, this.canvasHeight * 0.5);
+    this.context.fillStyle = '#000000';
+    this.context.fillRect(-this.canvasWidth * 0.5, -this.canvasHeight * 0.5, this.canvasWidth, this.canvasHeight);
   }
 
   update(){
 
     // clear the canvas for this loop's animation
-    this.context.clearRect(-this.canvasWidth * 0.5, -this.canvasHeight * 0.5, this.canvasWidth, this.canvasHeight);
+    //this.context.clearRect(-this.canvasWidth * 0.5, -this.canvasHeight * 0.5, this.canvasWidth, this.canvasHeight);
     this.context.fillStyle = '#000000';
     this.context.fillRect(-this.canvasWidth * 0.5, -this.canvasHeight * 0.5, this.canvasWidth, this.canvasHeight);
 
